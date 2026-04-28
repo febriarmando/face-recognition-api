@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["python311", "gcc", "cmake"]
+nixPkgs = ["python311", "gcc", "cmake", "libxcb", "xorg.libX11", "xorg.libXext", "xorg.libXrender"]
 
 [phases.install]
 cmds = ["pip install -r requirements.txt"]
 
 [start]
-cmd = "gunicorn app:app --bind 0.0.0.0:5000 --timeout 120"
+cmd = "gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120 --workers 1"
